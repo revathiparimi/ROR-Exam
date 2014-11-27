@@ -1,0 +1,15 @@
+<%= link_to 'Logout', destroy_admin_session_path, :method=>'delete' %>
+<%=  link_to '<button type="button">UploadVideos</button>'.html_safe,  '/admin_dashboards/view' %>
+<%=  link_to '<button type="button">ViewUsers</button>'.html_safe,  '/admin_dashboards' %>
+<center>
+
+<table>
+<% @videos.each do |video| %>
+<% @src = "//www.youtube.com/embed/"+"#{video.url.partition('=').last}"+"?feature=player_detailpage" %>
+	<tr>
+		<td><iframe width="500" height="250" src=<%=@src %> frameborder="0" allowfullscreen></iframe></td>
+		<!--	<td><%= link_to video.url,video.url %></td>		-->
+	</tr>	
+<% end %>
+</table>
+</center>

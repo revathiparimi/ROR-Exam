@@ -1,0 +1,36 @@
+<center><h3>users</h3></center>
+<% if !flash[:updated].nil? %>
+ <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert" >×</button>
+    <strong><%= flash[:updated] %></strong>
+    </div>
+<% end %>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>LastName</th>
+      <th>UserName</th>
+      <th>Emailid</th>
+      <th>AccountType</th>
+    </tr>
+  </thead>
+
+   <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.firstname %></td>
+        <td><%= user.lastname%></td>
+        <td><%= user.username%></td>
+        <td><%= user.email%></td>
+        <td>
+        <%= form_tag("/admins/update",:method=> "post") do %>
+        <%= hidden_field_tag :email, user.email %>
+        <%= user.account_type%><%= select_tag "account_type", "<option></option><option>Free</option><option>Silver</option><option>Gold</option>".html_safe , :onchange => "this.form.submit();"%>
+        <%end%>
+        </td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

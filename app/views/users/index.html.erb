@@ -1,0 +1,16 @@
+<center><h3>videos</h3></center>
+<div class="right">
+	<%= @current_user %><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+</div>
+<center>
+
+<table>
+<% @videos.each do |video| %>
+<% @src = "//www.youtube.com/embed/"+"#{video.url.partition('=').last}"+"?feature=player_detailpage" %>
+	<tr>
+		<td><iframe width="500" height="250" src=<%=@src %> frameborder="0" allowfullscreen></iframe></td>
+		<!--	<td><%= link_to video.url,video.url %></td>		-->
+	</tr>	
+<% end %>
+</table>
+</center>
